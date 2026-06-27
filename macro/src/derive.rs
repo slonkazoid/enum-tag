@@ -46,7 +46,7 @@ fn enum_tag_impl(input: DeriveInput) -> Result<TokenStream2> {
             .segments
             .iter()
             .map(|s| s.ident.to_string())
-            .eq(["enum_tag"])
+            .eq(["enum_tag", "derive"])
     }) {
         Some(attr) if let Meta::List(meta_list) = &&attr.meta => &meta_list.tokens,
         Some(attr) => {
