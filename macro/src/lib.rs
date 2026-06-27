@@ -96,3 +96,8 @@ mod derive;
 pub fn enum_tag(input: TokenStream) -> TokenStream {
     derive::enum_tag(parse_macro_input!(input as DeriveInput)).into()
 }
+
+#[proc_macro_attribute]
+pub fn derive(_attr: TokenStream, input: TokenStream) -> TokenStream {
+    input
+}
