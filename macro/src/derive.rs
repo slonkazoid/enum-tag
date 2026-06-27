@@ -1,13 +1,8 @@
-use proc_macro2::Span;
 use proc_macro2::TokenStream as TokenStream2;
 use quote::{format_ident, quote};
-use syn::token::PathSep;
 use syn::DeriveInput;
-use syn::Ident;
 use syn::Meta;
-use syn::PathSegment;
 use syn::Result;
-use syn::Token;
 
 /// Wrapper around `enum_tag_impl` for error conversions.
 pub fn enum_tag(input: DeriveInput) -> TokenStream2 {
@@ -49,7 +44,7 @@ fn enum_tag_impl(input: DeriveInput) -> Result<TokenStream2> {
             .eq(["enum_tag", "derive"])
     }) {
         Some(attr) if let Meta::List(meta_list) = &&attr.meta => &meta_list.tokens,
-        Some(attr) => {
+        Some(_attr) => {
             todo!()
         }
         None => &TokenStream2::new(),

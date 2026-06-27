@@ -1,6 +1,7 @@
 #![no_std]
 
 pub use enum_tag_macro::EnumTag;
+pub use enum_tag_macro::derive;
 
 /// Trait implemented by `enum` types.
 ///
