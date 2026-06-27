@@ -44,9 +44,14 @@ fn enum_tag_impl(input: DeriveInput) -> Result<TokenStream2> {
             .eq(["enum_tag", "derive"])
     }) {
         Some(attr) if let Meta::List(meta_list) = &&attr.meta => &meta_list.tokens,
-        Some(_attr) => {
-            todo!()
-        }
+        Some(attr) if let Meta::Path(_) = &&attr.meta => bail_spanned!(
+            input,
+            "enum_tag::derive(..) takes in a list of derive macros but found path"
+        ),
+        Some(_attr) => bail_spanned!(
+            input,
+            "enum_tag::derive(..) takes in a list of derive macros but found map"
+        ),
         None => &TokenStream2::new(),
     };
 
